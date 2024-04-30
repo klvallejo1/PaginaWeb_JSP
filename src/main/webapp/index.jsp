@@ -2,7 +2,8 @@
 <html lang="es">
 	<head>
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
-	    pageEncoding="UTF-8"%>
+	    pageEncoding="UTF-8" import="com.productos.negocio.*"%>
+	    
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	    <title>NekoMangas</title>
@@ -25,6 +26,13 @@
 
     <main>
         <h1>MANGAS DISPONIBLES</h1>
+        
+        <%-- Declaración de variables Java --%>
+        <%Producto p = new Producto();%>
+        
+        <%=p.consultarTodo()%> 
+        
+        
     </main>
 
     <footer class="footer">

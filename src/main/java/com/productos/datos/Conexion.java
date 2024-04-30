@@ -82,4 +82,15 @@ public class Conexion {
 		}
 		return (reg);
 	}
+	
+	public void cerrarConexion() {
+        try {
+            if (con != null && !con.isClosed()) {
+                con.close();
+                System.out.println("Conexión cerrada correctamente.");
+            }
+        } catch (SQLException e) {
+            System.out.println("Error al cerrar la conexión: " + e.getMessage());
+        }
+    }
 }

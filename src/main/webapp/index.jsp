@@ -1,8 +1,15 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@page import="java.util.List"%>
+<%
+	String resultado="";
+	
+	Producto producto = new Producto();
+	String tabla = producto.consultarTodo();
+%>
 <html lang="es">
 	<head>
 	<%@ page language="java" contentType="text/html; charset=UTF-8"
-	    pageEncoding="UTF-8" import="com.productos.negocio.*"%>
+	    pageEncoding="UTF-8" import="com.productos.negocio.*" import="com.productos.datos.*"%>
 	    
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,13 +33,20 @@
 
     <main>
         <h1>MANGAS DISPONIBLES</h1>
+
+        <div class="navegacion">
+            <p>Todas las categorias: </p>
+            <% Categoria c = new Categoria();
+                String combCategoria = c.mostrarCategoria();
+                out.print(combCategoria); 
+            %>  
         
-        <%-- Declaración de variables Java --%>
-        <%Producto p = new Producto();%>
+           <input type="text" id="buscar" placeholder="Buscar producto...">
+           <button id="boton_buscar">Buscar</button>
+        </div> 
         
-        <%=p.consultarTodo()%> 
-        
-        
+        <h1>Lista de Productos</h1>
+        <%= tabla %>
     </main>
 
     <footer class="footer">

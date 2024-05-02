@@ -35,7 +35,7 @@ public class Conexion {
 		this.driver = "org.postgresql.Driver";
 		this.user = "postgres";
 		this.pwd = "1234";
-		this.cadena = "jdbc:postgresql://localhost:5433/BD_productos";
+		this.cadena = "jdbc:postgresql://localhost:5432/BD_productos";
 		this.con = this.crearConexion();
 
 	}
@@ -58,39 +58,54 @@ public class Conexion {
 	}
 
 	public String Ejecutar(String sql) {
-		String error = "";
-		try {
-			St = getConexion().createStatement();
-			St.execute(sql);
-			error = "Datos insertados";
-		} catch (Exception ex) {
-			error = ex.getMessage();
-		}
-		return (error);
+	    String error = "";
+	    Statement st = null;
+	    
+	    try {
+	        st = getConexion().createStatement();
+	        st.execute(sql);
+	        error = "Datos insertados";
+	    } catch (Exception ex) {
+	        error = ex.getMessage();
+	    } finally {
+	        try {
+	            if (st != null) {
+	                st.close();
+	            }
+	        } catch (SQLException e) {
+	            error = e.getMessage();
+	        }
+	    }
+	    
+	    return error;
 	}
 
 	public ResultSet Consulta(String sql) {
-		String error = "";
-		ResultSet reg = null;
-
-		try {
-			St = getConexion().createStatement();
-			reg = St.executeQuery(sql);
-
-		} catch (Exception ee) {
-			error = ee.getMessage();
-		}
-		return (reg);
+	    String error = "";
+	    ResultSet reg = null;
+	    Statement st = null;
+	    
+	    try {
+	        st = getConexion().createStatement();
+	        reg = st.executeQuery(sql);
+	    } catch (Exception ee) {
+	        error = ee.getMessage();
+	    }
+	    
+	    return reg;
 	}
 	
 	public void cerrarConexion() {
-        try {
-            if (con != null && !con.isClosed()) {
-                con.close();
-                System.out.println("Conexión cerrada correctamente.");
-            }
-        } catch (SQLException e) {
-            System.out.println("Error al cerrar la conexión: " + e.getMessage());
-        }
-    }
+	    try {
+	        if (St != null) {
+	            St.close();
+	        }
+	        if (con != null && !con.isClosed()) {
+	            con.close();
+	            System.out.println("Conexión cerrada correctamente.");
+	        }
+	    } catch (SQLException e) {
+	        System.out.println("Error al cerrar la conexión: " + e.getMessage());
+	    }
+	}
 }

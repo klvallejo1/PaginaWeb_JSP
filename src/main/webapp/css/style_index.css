@@ -87,19 +87,17 @@ h3{
     gap: 2rem;
 }
 
+
 .navegacion_enlace{
     font-family: var(--fuente_Principal);
     color: var(--secundario);
     font-size: 3rem;
-
 }
 
 .navegacion_enlace--activo,
 .navegacion_enlace:hover{
     color: var(--secundario_Oscuro);
 }
-
-
 
 /**Footer**/
 .footer{

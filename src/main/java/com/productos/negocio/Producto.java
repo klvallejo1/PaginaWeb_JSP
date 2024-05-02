@@ -1,5 +1,8 @@
 package com.productos.negocio;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Arrays;
@@ -7,13 +10,13 @@ import java.util.Arrays;
 import com.productos.datos.Conexion;
 
 public class Producto {
-	
+
 	private int id;
 	private String nombre;
 	private int cantidad;
 	private double precio;
 	private byte[] foto;
-	
+
 	public Producto(int id, String nombre, int cantidad, double precio, byte[] foto) {
 		super();
 		this.id = id;
@@ -22,9 +25,9 @@ public class Producto {
 		this.precio = precio;
 		this.foto = foto;
 	}
-	
+
 	public Producto() {
-	
+
 	}
 
 	public int getId() {
@@ -67,9 +70,9 @@ public class Producto {
 		this.foto = foto;
 	}
 
-	/*PRODUCT_DAO*/
+	/* PRODUCT_DAO */
 	public String consultarTodo() {
-		String sql = "SELECT * FROM tb_producto ORDER BY id_pr";
+		String sql = "SELECT * FROM tb_productos ORDER BY id_pr";
 		Conexion con = new Conexion();
 		String tabla = "<table border=2><th>ID</th><th>Producto</th><th>Cantidad</th><th>Precio</th>";
 		ResultSet rs = null;
@@ -123,10 +126,39 @@ public class Producto {
 		return resultado;
 	}
 
+	public String ingresarProducto(int id, int cat, String nombre, int cantidad, double precio, String directorio) {
+	    String result = "";
+	    Conexion con = new Conexion();
+	    PreparedStatement pr = null;
+	    String sql = "INSERT INTO tb_producto (id_pr,id_cat," + "nombre_pr,cantidad_pr,precio_pr,foto_pr) " + "VALUES(?,?,?,?,?,?)";
+
+	    try {
+	        pr = con.getConexion().prepareStatement(sql);
+
+	        if (pr.executeUpdate() == 1) {
+	            result = "Inserción correcta";
+	        } else {
+	            result = "Error en inserción";
+	        }
+	    } catch (Exception ex) {
+	        result = ex.getMessage();
+	        System.out.println("Error: " + ex.getMessage());
+	    } finally {
+	        try {
+	            pr.close();
+	            con.getConexion().close();
+	        } catch (Exception ex) {
+	            System.out.println(ex.getMessage());
+	        }
+	    }
+
+	    return result;
+	}
+
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", foto="
 				+ Arrays.toString(foto) + "]";
 	}
-	
+
 }

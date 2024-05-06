@@ -47,6 +47,30 @@
         
         <h1>Lista de Productos</h1>
         <%= tabla %>
+        
+        <h1>Ingresar un producto</h1>
+        <form action="Registrar_Producto.jsp" method="post">
+	
+	        <label for="categoria">Categoría:</label>
+	        <input type="number" id="categoria" name="categoria" required><br><br>
+	
+	        <label for="nombre">Nombre del Producto:</label>
+	        <input type="text" id="nombre" name="nombre" required><br><br>
+	
+	        <label for="cantidad">Cantidad:</label>
+	        <input type="number" id="cantidad" name="cantidad" required><br><br>
+	
+	        <label for="precio">Precio:</label>
+	        <input type="number" step="0.01" id="precio" name="precio" required><br><br>
+	        
+	        <label>Foto del producto: </label>
+	        <input type="file" id="precio" name="foto" required><br><br>
+	        
+	
+	        <input type="submit" value="Enviar">
+    	</form>
+        
+        
     </main>
 
     <footer class="footer">

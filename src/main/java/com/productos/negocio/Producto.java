@@ -72,7 +72,7 @@ public class Producto {
 
 	/* PRODUCT_DAO */
 	public String consultarTodo() {
-		String sql = "SELECT * FROM tb_productos ORDER BY id_pr";
+		String sql = "SELECT * FROM tb_producto ORDER BY id_pr";
 		Conexion con = new Conexion();
 		String tabla = "<table border=2><th>ID</th><th>Producto</th><th>Cantidad</th><th>Precio</th>";
 		ResultSet rs = null;
@@ -108,6 +108,40 @@ public class Producto {
 		return tabla;
 	}
 
+	public String ingresarProducto(int cat, String nombre, int cantidad, double precio) {
+		String result = "";
+		Conexion con = new Conexion();
+		PreparedStatement pr = null;
+		String sql = "INSERT INTO tb_producto (id_cat, nombre_pr, cantidad_pr, precio_pr) VALUES (?, ?, ?, ?)";
+		try {
+			pr = con.getConexion().prepareStatement(sql);
+			pr.setInt(1, cat);
+			pr.setString(2, nombre);
+			pr.setInt(3, cantidad);
+			pr.setDouble(4, precio);
+			/*
+			File fichero = new File(directorio);
+			FileInputStream streamEntrada = new FileInputStream(fichero);
+			pr.setBinaryStream(6, streamEntrada, (int) fichero.length());*/
+			
+			if (pr.executeUpdate() == 1) {
+				result = "Inserción correcta";
+			} else {
+				result = "Error en inserción";
+			}
+		} catch (Exception ex) {
+			result = ex.getMessage();
+		} finally {
+			try {
+				pr.close();
+				con.getConexion().close();
+			} catch (Exception ex) {
+				System.out.print(ex.getMessage());
+			}
+		}
+		return result;
+	}
+
 	public String buscarProductoCategoria(int cat) {
 		String sentencia = "SELECT nombre_pr, precio_pr FROM tb_producto WHERE id_cat=" + cat;
 		Conexion con = new Conexion();
@@ -126,39 +160,10 @@ public class Producto {
 		return resultado;
 	}
 
-	public String ingresarProducto(int id, int cat, String nombre, int cantidad, double precio, String directorio) {
-	    String result = "";
-	    Conexion con = new Conexion();
-	    PreparedStatement pr = null;
-	    String sql = "INSERT INTO tb_producto (id_pr,id_cat," + "nombre_pr,cantidad_pr,precio_pr,foto_pr) " + "VALUES(?,?,?,?,?,?)";
-
-	    try {
-	        pr = con.getConexion().prepareStatement(sql);
-
-	        if (pr.executeUpdate() == 1) {
-	            result = "Inserción correcta";
-	        } else {
-	            result = "Error en inserción";
-	        }
-	    } catch (Exception ex) {
-	        result = ex.getMessage();
-	        System.out.println("Error: " + ex.getMessage());
-	    } finally {
-	        try {
-	            pr.close();
-	            con.getConexion().close();
-	        } catch (Exception ex) {
-	            System.out.println(ex.getMessage());
-	        }
-	    }
-
-	    return result;
-	}
-
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", foto="
 				+ Arrays.toString(foto) + "]";
 	}
-
 }
+

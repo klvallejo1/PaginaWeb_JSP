@@ -72,41 +72,72 @@ public class Producto {
 
 	/* PRODUCT_DAO */
 	public String consultarTodo() {
-		String sql = "SELECT * FROM tb_producto ORDER BY id_pr";
-		Conexion con = new Conexion();
-		String tabla = "<table border=2><th>ID</th><th>Producto</th><th>Cantidad</th><th>Precio</th>";
-		ResultSet rs = null;
-		try {
-			rs = con.Consulta(sql);
-			if (rs != null) {
-				boolean datosEncontrados = false;
-				while (rs.next()) {
-					datosEncontrados = true;
-					tabla += "<tr><td>" + rs.getInt(1) + "</td>" + "<td>" + rs.getString(3) + "</td>" + "<td>"
-							+ rs.getInt(4) + "</td>" + "<td>" + rs.getDouble(5) + "</td>" + "</td></tr>";
-				}
-				tabla += "</table>";
-				if (!datosEncontrados) {
-					tabla = "La base de datos está vacía.";
-				}
-			} else {
-				tabla = "Error al consultar la base de datos: ResultSet es nulo.";
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			tabla = "Error al consultar la base de datos: " + e.getMessage();
-		} finally {
-			if (rs != null) {
-				try {
-					rs.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-			con.cerrarConexion();
-		}
-		return tabla;
+	    String sql = "SELECT * FROM tb_producto ORDER BY id_pr";
+	    Conexion con = new Conexion();
+	    String tabla = "<table border=2><th>ID</th><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Modificar</th><th>Eliminar</th>";
+	    ResultSet rs = null; // Aquí se guardan los datos obtenidos de la tabla.
+	    try {
+	        rs = con.Consulta(sql);
+	        if (rs != null) {
+	            boolean datosEncontrados = false;
+	            while (rs.next()) {
+	                datosEncontrados = true;
+	                int idProducto = rs.getInt(1);
+	                tabla += "<tr><td>" + idProducto + "</td>" 
+	                         + "<td>" + rs.getString(3) + "</td>" 
+	                         + "<td>" + rs.getInt(4) + "</td>" 
+	                         + "<td>" + rs.getDouble(5) + "</td>"
+	                         + "<td><a href='Buscar_Producto.jsp' id=" + idProducto + "'>Modificar</a></td>"
+	                         + "<td><a href='Eliminar_Producto.jsp' id=" + idProducto + "'>Eliminar</a></td></tr>";
+	            }
+	            tabla += "</table>";
+	            if (!datosEncontrados) {
+	                tabla = "La base de datos está vacía.";
+	            }
+	        } else {
+	            tabla = "Error al consultar la base de datos: ResultSet es nulo.";
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	        tabla = "Error al consultar la base de datos: " + e.getMessage();
+	    } finally {
+	        if (rs != null) {
+	            try {
+	                rs.close();
+	            } catch (SQLException e) {
+	                e.printStackTrace();
+	            }
+	        }
+	        con.cerrarConexion();
+	    }
+	    return tabla;
 	}
+	
+	public void ConsultarEditarProductos(int cod) {
+		Conexion con = new Conexion();
+		PreparedStatement pr = null;
+		ResultSet rs = null;
+		Producto p= new Producto();
+		Categoria c= new Categoria();
+		
+		String sql= "SELECT id_pr, id_cat, descripcion_pr, precio_pr, cantidad_pr FROM tb_producto WHERE id_pr = '" + cod + "'";
+		
+		try {
+			rs= con.Consulta(sql);
+			while(rs.next()) {
+				p.setId(rs.getInt(1));
+				c.setId(rs.getInt(2));
+				c.setDescription(rs.getString(3));
+				p.setPrecio(rs.getDouble(4));
+				p.setCantidad(rs.getInt(5));
+			}
+			
+		} catch (Exception e) {
+			
+		}
+	
+	}
+
 
 	public String ingresarProducto(int cat, String nombre, int cantidad, double precio) {
 		String result = "";
@@ -158,6 +189,31 @@ public class Producto {
 		}
 		System.out.print(resultado);
 		return resultado;
+	}
+	
+	public boolean ModificarProducto(Producto p) {
+		
+		boolean agregado=false;
+		Conexion con= new Conexion();
+		String sql="UPDATE tb_producto SET descripcion_pr='"+p.get;
+		
+		return agregado;
+	}
+	
+	public boolean EliminarProducto(int cod) {
+		boolean f=false;
+		Conexion con= new Conexion();
+		String sql="DELETE FROM tb_producto WHERE id_pr='"+cod+"'";
+		
+		try {
+			con.Ejecutar(sql);
+			f=true;
+			
+		} catch (Exception e) {
+			f=false;
+		}
+		
+		return f;
 	}
 
 	@Override

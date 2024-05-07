@@ -1,10 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <%@page import="java.util.List"%>
 <%
+	Categoria c= new Categoria();
+	Producto producto = new Producto();
 	String resultado="";
 	
-	Producto producto = new Producto();
 	String tabla = producto.consultarTodo();
+	
 %>
 <html lang="es">
 	<head>
@@ -32,11 +34,12 @@
     </nav>
 
     <main>
+
         <h1>MANGAS DISPONIBLES</h1>
 
         <div class="navegacion">
             <p>Todas las categorias: </p>
-            <% Categoria c = new Categoria();
+            <%
                 String combCategoria = c.mostrarCategoria();
                 out.print(combCategoria); 
             %>  
@@ -69,8 +72,6 @@
 	
 	        <input type="submit" value="Enviar">
     	</form>
-        
-        
     </main>
 
     <footer class="footer">

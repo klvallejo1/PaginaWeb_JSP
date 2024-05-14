@@ -30,6 +30,7 @@ box-sizing: inherit;
 /**Globales**/
 body{
     background-color: var(--blanco);
+    font-family: var(--fuente_Principal);
     font-size: 1.6rem;
     line-height: 1.5;
 }
@@ -43,6 +44,7 @@ p{
     font-weight: 400;
     font-size: 1.8rem;
     color: var(--negro);
+    text-align: center;
 }
 
 a{
@@ -76,6 +78,67 @@ h3{
     width: 95%;
 }
 
+/** Estilos adicionales **/
+.formulario {
+    background-color: var(--blanco);
+    border: 2px solid var(--primario_Oscuro);
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+}
+
+.texto_formulario {
+    margin-bottom: 2rem;
+}
+
+.formulario div {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.formulario_input {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    font-size: 1.6rem;
+    padding: 1rem;
+    border: 1px solid var(--primario_Oscuro);
+    border-radius: 0.5rem;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border-color: var(--primario);
+    outline: none;
+}
+
+.input_boton {
+    background-color: var(--primario);
+    color: var(--blanco);
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.6rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.input_boton:hover {
+    background-color: var(--primario_Oscuro);
+}
 
 /**Header**/
 .header{
@@ -110,93 +173,6 @@ h3{
 }
 
 /**Formulario**/
-@media(min-width:768px){
-    .contenedor_formulario{
-        display: flex;
-    }
-}
-
-.imagen_formulario{
-    background-image: url(F1.jpg);
-    background-position: center center;
-    background-size: cover;
-    height: 20rem;
-    flex: 0 0 calc(60%);
-}
-
-.contenedor_formulario{
-    display: flex;
-}
-
-@media(min-width:768px){
-    .imagen_formulario{
-        height: auto;
-    }
-}
-
-.texto_formulario h1, .formulario_input label, .formulario_forget a, .formulario_register a,.texto_formulario p{
-    color: var(--blanco);
-    font-family: var(--fuente_Principal);
-}
-
-.formulario{
-    padding: 5rem;
-    background-color: var(--primario_Oscuro);
-}
-
-.texto_formulario h1{
-    font-size: 5rem;
-    text-align: center;
-}
-
-.texto_formulario p{
-    font-size: 2.2rem;
-    text-align: center;
-}
-
-.formulario_input label{
-    display: block;
-    font-size: 2.2rem;
-    font-weight: bold;
-    margin: 2rem 0;
-}
-
-input{
-    width: 100%;
-    font-family: var(--fuente_Principal);
-    color: var(--negro);
-    padding: 1rem 1.6rem;
-    border-radius: 0.5rem;
-    outline: none;
-}
-
-.input_boton{
-    background-color: var(--primario);
-    color: var(--blanco);
-    font-size: 2rem;
-    margin-top: 1rem;
-    font-weight: bold;
-    border: none;
-    transition: background-color .2s ease-in-out;
-}
-
-.input_boton:hover{
-    cursor: pointer;
-    background-color: var(--secundario_Oscuro);
-}
-
-.formulario_forget a{
-    display: inline-block;
-    margin-top: 2rem;
-    font-size: 2rem;
-}
-
-.formulario_register a{
-    display: inline-block;
-    margin-top: 3rem;
-    font-size: 1.5rem;
-}
-
 
 
 /**Footer**/

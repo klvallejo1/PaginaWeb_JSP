@@ -1,23 +1,12 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<%@page import="java.util.List"%>
-<%
-	Categoria c= new Categoria();
-	Producto producto = new Producto();
-	String resultado="";
-	
-	String tabla = producto.consultarTodo();
-	
-%>
-<html lang="es">
-	<head>
-	<%@ page language="java" contentType="text/html; charset=UTF-8"
-	    pageEncoding="UTF-8" import="com.productos.negocio.*" import="com.productos.datos.*"%>
-	    
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	    <title>NekoMangas</title>
-	    <link href="css/normalize.css" rel="stylesheet">
-	    <link href="css/style_index.css" rel="stylesheet">
+<html>
+<head>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="css/normalize.css">
+<link rel="stylesheet" href="css/registrar_Usuario.css">
+<title>Registrate!</title>
 </head>
 <body>
     <header class="header">
@@ -27,58 +16,54 @@
     </header>
 
     <nav class="navegacion">
-        <a class="navegacion_enlace navegacion_enlace--activo" href="index.jsp">TIENDA</a>
+        <a class="navegacion_enlace" href="index.jsp">TIENDA</a>
         <a class="navegacion_enlace" href="nosotros.jsp">NOSOTROS</a>
         <a class="navegacion_enlace" href="formulario_contacto.jsp">CONTACTÁNOS</a>
-        <a class="navegacion_enlace" href="login.jsp">TU CUENTA</a>
+        <a class="navegacion_enlace navegacion_enlace--activo" href="login.jsp">TU CUENTA</a>
     </nav>
 
-    <main>
+    <section class="contenedor">
+        <div class="formulario">
+            <div class="texto_formulario">
+                <h1>Registro de nuevos clientes</h1>
+                <p>Por favor, complete el formulario para registrarse.</p>
+            </div>
+            <form action="ingresarUsuario.jsp" method="POST">
+                <div>
+                    <label for="nombre" class="formulario_input">Nombre:</label>
+                    <input type="text" id="nombreU" name="nombreU" required>
+                </div>
+                <div>
+                    <label for="cedula" class="formulario_input">Cédula:</label>
+                    <input type="text" id="cedulaU" name="cedulaU" required>
+                </div>
+                <div>
+                    <label for="estadoCivil" class="formulario_input">Estado civil:</label>
+                    <select id="estadoCivilU" name="estadoCivilU" class="input_select" required>
+                        <option value="">Seleccionar</option>
+                        <option value="Soltero">Soltero</option>
+                        <option value="Divorciado">Divorciado</option>
+                        <option value="Casado">Casado</option>
+                        <option value="Union Libre">Unión Libre</option>
+                        <option value="Viudo">Viudo</option>
+                        <option value="Indefinido">Indefinido</option>
+                    </select>
+                </div>
+                <div>
+                    <label for="correo" class="formulario_input">Correo:</label>
+                    <input type="email" id="correoU" name="correoU" required>
+                </div>
+                <div>
+                    <label for="clave" class="formulario_input">Clave:</label>
+                    <input type="password" id="claveU" name="claveU" required>
+                </div>
+                <div>
+                    <button type="submit" class="input_boton">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </section>
 
-        <h1>MANGAS DISPONIBLES</h1>
-
-        <div class="navegacion">
-            <p>Todas las categorias: </p>
-            <%
-                String combCategoria = c.mostrarCategoria();
-                out.print(combCategoria); 
-            %>  
-        
-           <input type="text" id="buscar" placeholder="Buscar producto...">
-           <button id="boton_buscar">Buscar</button>
-        </div> 
-        
-
-        
-        <h2>Lista de Productos</h2>
-        <%=tabla%>
-        
-
-        <h1>Lista de Productos</h1>
-        <%= tabla %>
-        
-        <h1>Ingresar un producto</h1>
-        <form action="Registrar_Producto.jsp" method="post">
-	
-	        <label for="categoria">Categoría:</label>
-	        <input type="number" id="categoria" name="categoria" required><br><br>
-	
-	        <label for="nombre">Nombre del Producto:</label>
-	        <input type="text" id="nombre" name="nombre" required><br><br>
-	
-	        <label for="cantidad">Cantidad:</label>
-	        <input type="number" id="cantidad" name="cantidad" required><br><br>
-	
-	        <label for="precio">Precio:</label>
-	        <input type="number" step="0.01" id="precio" name="precio" required><br><br>
-	        
-	        <label>Foto del producto: </label>
-	        <input type="file" id="precio" name="foto" required><br><br>
-	        
-	
-	        <input type="submit" value="Enviar">
-    	</form>
-    </main>
 
     <footer class="footer">
         <p class="footer_texto">NekoMangaStore - Todos los derechos reservados 2024.</p>
@@ -117,6 +102,7 @@
                 <a class="footer_texto_red" href="https://www.whatsapp.com" target="_blank">Whatsapp</a>
             </div>
         </div>
-    </footer>
+    </footer> 
+
 </body>
 </html>

@@ -22,8 +22,8 @@
         <a class="navegacion_enlace" href="formulario_contacto.jsp">CONTACTÁNOS</a>
         <a class="navegacion_enlace navegacion_enlace--activo" href="login.jsp">TU CUENTA</a>
     </nav>
-
-    <section>
+    
+        <section>
         <div class="contenedor_formulario contenedor">
             <div class="imagen_formulario"></div>
     
@@ -52,59 +52,13 @@
                 </div>
 
                 <div class="formulario_register">
-                    <a href="">No tienes una cuenta? Registrate!</a>
+                    <a href="Registrar_Usuario.jsp">No tienes una cuenta? Registrate!</a>
                 </div>
             </form>
         </div>
     </section>
-<<<<<<< HEAD
-    
-    <section class="contenedor">
-    <div class="formulario">
-        <div class="texto_formulario">
-            <h1>Registro de nuevos clientes</h1>
-            <p>Por favor, complete el formulario para registrarse.</p>
-        </div>
-        <form action="ingresarUsuario.jsp" method="POST">
-            <div>
-                <label for="nombre" class="formulario_input">Nombre:</label>
-                <input type="text" id="nombreU" name="nombreU" required>
-            </div>
-            <div>
-                <label for="cedula" class="formulario_input">Cedula:</label>
-                <!-- Corregir el nombre del atributo "name" a "cedulaU" -->
-                <input type="text" id="cedulaU" name="cedulaU" required>
-            </div>
-            <div>
-                <label for="estadoCivil" class="formulario_input">Estado civil:</label>
-                <select id="estadoCivilU" name="estadoCivilU" class="input_select" required>
-                    <option value="">Seleccionar</option>
-                    <option value="Soltero">Soltero</option>
-                    <option value="Divorciado">Divorciado</option>
-                    <option value="Casado">Casado</option>
-                    <option value="Union Libre">Union Libre</option>
-                    <option value="Viudo">Viudo</option>
-                    <option value="Indefinido">Indefinido</option>
-                </select>
-            </div>
-            <div>
-                <label for="correo" class="formulario_input">Correo:</label>
-                <input type="email" id="correoU" name="correoU" required>
-            </div>
-            <div>
-                <label for="clave" class="formulario_input">Clave:</label>
-                <input type="password" id="claveU" name="claveU" required>
-            </div>
-            <div>
-                <button type="submit" class="input_boton">Enviar</button>
-            </div>
-        </form>
-    </div>
-</section>
 
-   
-=======
->>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
+
 
     <footer class="footer">
         <p class="footer_texto">NekoMangaStore - Todos los derechos reservados 2024.</p>

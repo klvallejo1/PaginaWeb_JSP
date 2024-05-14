@@ -1,0 +1,231 @@
+@charset "UTF-8";
+
+/**Importar el tipo de Fuente de Google Fonts*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+/**Variables a reutilizar**/
+:root{
+    --primario:#CD95F5; 
+    --primario_Oscuro:#71466D;
+
+    --secundario: #F5C36C;
+    --secundario_Oscuro:#B98649;
+
+    --blanco: #FFFFFF;
+    --negro: #000000;
+
+    --fuente_Principal: "Poppins";
+}
+
+/**Cambia la forma de calcular el tamaño de un elemento**/
+html {
+    box-sizing: border-box;
+    font-size: 62.5%;
+  }
+
+*, *:before, *:after {
+box-sizing: inherit;
+}
+
+/**Globales**/
+body{
+    background-color: var(--blanco);
+    font-size: 1.6rem;
+    line-height: 1.5;
+}
+
+img{
+    max-width: 100%;
+}
+
+p{
+    font-family: var(--fuente_Principal);
+    font-weight: 400;
+    font-size: 1.8rem;
+    color: var(--negro);
+}
+
+a{
+    font-family: var(--fuente_Principal);
+    text-decoration: none;
+}
+h1,h2,h3{
+    text-align: center;
+    font-family: var(--fuente_Principal);
+    font-weight: 600;
+    font-style: normal;
+}
+
+h1{
+    font-size: 4rem;
+}
+
+h2{
+    font-size: 3.2rem;
+}
+
+h3{
+    font-size: 2.4rem;
+}
+
+
+/**Contenedor**/
+.contenedor{
+    margin: 0 auto;
+    padding-top: 2rem;
+    max-width: 120rem;
+    width: 95%;
+}
+
+
+/**Header**/
+.header{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.header_logo{
+    height: auto;
+}
+
+/**Navegacion**/
+.navegacion{
+    background-color: var(--primario_Oscuro);
+    padding: 1rem 0;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.navegacion_enlace{
+    font-family: var(--fuente_Principal);
+    color: var(--secundario);
+    font-size: 3rem;
+
+}
+
+.navegacion_enlace--activo,
+.navegacion_enlace:hover{
+    color: var(--secundario_Oscuro);
+}
+
+/**Formulario**/
+@media(min-width:768px){
+    .contenedor_formulario{
+        display: flex;
+    }
+}
+
+.imagen_formulario{
+    background-image: url(F1.jpg);
+    background-position: center center;
+    background-size: cover;
+    height: 20rem;
+    flex: 0 0 calc(60%);
+}
+
+.contenedor_formulario{
+    display: flex;
+}
+
+@media(min-width:768px){
+    .imagen_formulario{
+        height: auto;
+    }
+}
+
+.texto_formulario h1, .formulario_input label, .formulario_forget a, .formulario_register a,.texto_formulario p{
+    color: var(--blanco);
+    font-family: var(--fuente_Principal);
+}
+
+.formulario{
+    padding: 5rem;
+    background-color: var(--primario_Oscuro);
+}
+
+.texto_formulario h1{
+    font-size: 5rem;
+    text-align: center;
+}
+
+.texto_formulario p{
+    font-size: 2.2rem;
+    text-align: center;
+}
+
+.formulario_input label{
+    display: block;
+    font-size: 2.2rem;
+    font-weight: bold;
+    margin: 2rem 0;
+}
+
+input{
+    width: 100%;
+    font-family: var(--fuente_Principal);
+    color: var(--negro);
+    padding: 1rem 1.6rem;
+    border-radius: 0.5rem;
+    outline: none;
+}
+
+.input_boton{
+    background-color: var(--primario);
+    color: var(--blanco);
+    font-size: 2rem;
+    margin-top: 1rem;
+    font-weight: bold;
+    border: none;
+    transition: background-color .2s ease-in-out;
+}
+
+.input_boton:hover{
+    cursor: pointer;
+    background-color: var(--secundario_Oscuro);
+}
+
+.formulario_forget a{
+    display: inline-block;
+    margin-top: 2rem;
+    font-size: 2rem;
+}
+
+.formulario_register a{
+    display: inline-block;
+    margin-top: 3rem;
+    font-size: 1.5rem;
+}
+
+/**Footer**/
+.footer{
+    background-color: var(--primario_Oscuro);
+    padding: 0.1rem 0;
+    margin-top: 2rem;
+}
+
+.footer_texto{
+    color: var(--secundario);
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.footer_texto_red{
+    color: var(--secundario);
+}
+
+.footer_texto_red:hover{
+    color: var(--secundario_Oscuro);
+}
+
+.footer_red{
+    display: flex;
+    justify-content: center;
+
+}
+
+.footer_content{
+    margin: 0 1rem;
+    text-align: center;
+}

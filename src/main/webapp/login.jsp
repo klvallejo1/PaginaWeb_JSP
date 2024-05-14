@@ -57,6 +57,7 @@
             </form>
         </div>
     </section>
+<<<<<<< HEAD
     
     <section class="contenedor">
     <div class="formulario">
@@ -102,6 +103,8 @@
 </section>
 
    
+=======
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 
     <footer class="footer">
         <p class="footer_texto">NekoMangaStore - Todos los derechos reservados 2024.</p>

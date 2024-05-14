@@ -48,10 +48,15 @@
            <button id="boton_buscar">Buscar</button>
         </div> 
         
+<<<<<<< HEAD
         
         <h2>Lista de Productos</h2>
         <%=tabla%>
         
+=======
+        <h1>Lista de Productos</h1>
+        <%= tabla %>
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
         
         <h1>Ingresar un producto</h1>
         <form action="Registrar_Producto.jsp" method="post">

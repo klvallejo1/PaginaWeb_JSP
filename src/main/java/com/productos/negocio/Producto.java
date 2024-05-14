@@ -5,21 +5,29 @@ import java.io.FileInputStream;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+<<<<<<< HEAD
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+=======
+import java.util.Arrays;
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 
 import com.productos.datos.Conexion;
 
 public class Producto {
 
 	private int id;
+<<<<<<< HEAD
 	private int id_cat;
+=======
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 	private String nombre;
 	private int cantidad;
 	private double precio;
 	private byte[] foto;
 
+<<<<<<< HEAD
 	public Producto(int id, int id_cat, String nombre, int cantidad, double precio) {
 		super();
 		this.id = id;
@@ -27,6 +35,15 @@ public class Producto {
 		this.nombre = nombre;
 		this.cantidad = cantidad;
 		this.precio = precio;
+=======
+	public Producto(int id, String nombre, int cantidad, double precio, byte[] foto) {
+		super();
+		this.id = id;
+		this.nombre = nombre;
+		this.cantidad = cantidad;
+		this.precio = precio;
+		this.foto = foto;
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 	}
 
 	public Producto() {
@@ -40,6 +57,7 @@ public class Producto {
 	public void setId(int id) {
 		this.id = id;
 	}
+<<<<<<< HEAD
 	
 	
 	public int getId_cat() {
@@ -49,6 +67,8 @@ public class Producto {
 	public void setId_cat(int id_cat) {
 		this.id_cat = id_cat;
 	}
+=======
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 
 	public String getNombre() {
 		return nombre;
@@ -73,18 +93,32 @@ public class Producto {
 	public void setPrecio(double precio) {
 		this.precio = precio;
 	}
+<<<<<<< HEAD
 	
 	@Override
 	public String toString() {
 		return "Producto [id=" + id + ", id_cat=" + id_cat + ", nombre=" + nombre + ", cantidad=" + cantidad
 				+ ", precio=" + precio + ", foto=" + Arrays.toString(foto) + "]";
+=======
+
+	public byte[] getFoto() {
+		return foto;
+	}
+
+	public void setFoto(byte[] foto) {
+		this.foto = foto;
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 	}
 
 	/* PRODUCT_DAO */
 	public String consultarTodo() {
 	    String sql = "SELECT * FROM tb_producto ORDER BY id_pr";
 	    Conexion con = new Conexion();
+<<<<<<< HEAD
 	    String tabla = "<table border=2><th>ID</th><th>Producto</th><th>Cantidad</th><th>Precio</th>";
+=======
+	    String tabla = "<table border=2><th>ID</th><th>Producto</th><th>Cantidad</th><th>Precio</th><th>Modificar</th><th>Eliminar</th>";
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 	    ResultSet rs = null; // Aquí se guardan los datos obtenidos de la tabla.
 	    try {
 	        rs = con.Consulta(sql);
@@ -96,7 +130,13 @@ public class Producto {
 	                tabla += "<tr><td>" + idProducto + "</td>" 
 	                         + "<td>" + rs.getString(3) + "</td>" 
 	                         + "<td>" + rs.getInt(4) + "</td>" 
+<<<<<<< HEAD
 	                         + "<td>" + rs.getDouble(5) + "</td>";
+=======
+	                         + "<td>" + rs.getDouble(5) + "</td>"
+	                         + "<td><a href='Buscar_Producto.jsp' id=" + idProducto + "'>Modificar</a></td>"
+	                         + "<td><a href='Eliminar_Producto.jsp' id=" + idProducto + "'>Eliminar</a></td></tr>";
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 	            }
 	            tabla += "</table>";
 	            if (!datosEncontrados) {
@@ -121,6 +161,7 @@ public class Producto {
 	    return tabla;
 	}
 	
+<<<<<<< HEAD
 	public String consultarTodo_ME() {
 		 String sql = "SELECT * FROM tb_producto ORDER BY id_pr";
 		    Conexion con = new Conexion();
@@ -163,6 +204,8 @@ public class Producto {
 		    return tabla;
 	}
 	
+=======
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 	public void ConsultarEditarProductos(int cod) {
 		Conexion con = new Conexion();
 		PreparedStatement pr = null;
@@ -241,6 +284,17 @@ public class Producto {
 		return resultado;
 	}
 	
+<<<<<<< HEAD
+=======
+	public boolean ModificarProducto(Producto p) {
+		
+		boolean agregado=false;
+		Conexion con= new Conexion();
+		String sql="UPDATE tb_producto SET descripcion_pr='"+p.get;
+		
+		return agregado;
+	}
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 	
 	public boolean EliminarProducto(int cod) {
 		boolean f=false;
@@ -258,5 +312,13 @@ public class Producto {
 		return f;
 	}
 
+<<<<<<< HEAD
+=======
+	@Override
+	public String toString() {
+		return "Producto [id=" + id + ", nombre=" + nombre + ", cantidad=" + cantidad + ", precio=" + precio + ", foto="
+				+ Arrays.toString(foto) + "]";
+	}
+>>>>>>> 25acefda5d5d1399ad350bd479002f3eb5277ba9
 }
 

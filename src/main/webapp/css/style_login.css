@@ -212,6 +212,10 @@ input{
     font-size: 2.5rem;
 }
 
+.mensaje_error{
+	color: var(--blanco);
+}
+
 .footer_texto_red{
     color: var(--secundario);
 }

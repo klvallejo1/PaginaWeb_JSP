@@ -104,16 +104,6 @@ h3{
     color: var(--secundario_Oscuro);
 }
 
-.image-column {
-    display: flex;
-    flex-direction: column;
-}
-
-.image-column img {
-    width: 100%;
-    margin-bottom: 10px; /* Espacio entre las imágenes */
-}
-
 /**Footer**/
 .footer{
     background-color: var(--primario_Oscuro);

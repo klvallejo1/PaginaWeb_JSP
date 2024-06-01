@@ -11,7 +11,7 @@
 <body>
     <header class="header">
         <a href="index.jsp">
-            <img class="header_logo" src="resourses/Logo_Temporal.png" alt="LogoWeb">
+            <img class="header_logo" src="resourses/Logo.jpg" alt="LogoWeb">
         </a>
     </header>
 
@@ -20,6 +20,15 @@
         <a class="navegacion_enlace navegacion_enlace--activo" href="nosotros.jsp">NOSOTROS</a>
         <a class="navegacion_enlace" href="formulario_contacto.jsp">CONTACTÁNOS</a>
         <a class="navegacion_enlace" href="login.jsp">TU CUENTA</a>
+        <a class="navegacion_enlace" href="carrito.jsp">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="48" height="48" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F5C36C" fill="none" stroke-linecap="round" stroke-linejoin="round">
+			  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+			  <path d="M6 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+			  <path d="M17 19m-2 0a2 2 0 1 0 4 0a2 2 0 1 0 -4 0" />
+			  <path d="M17 17h-11v-14h-2" />
+			  <path d="M6 5l14 1l-1 7h-13" />
+			</svg>
+        </a>
     </nav>
 
     <main class="contenedor">
@@ -127,13 +136,14 @@
     
             <div class="footer_content">
                 <p class="footer_content_img">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-whatsapp" width="60" height="60" viewBox="0 0 24 24" stroke-width="1.5" stroke="#ffbf00" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
-                        <path d="M3 21l1.65 -3.8a9 9 0 1 1 3.4 2.9l-5.05 .9" />
-                        <path d="M9 10a.5 .5 0 0 0 1 0v-1a.5 .5 0 0 0 -1 0v1a5 5 0 0 0 5 5h1a.5 .5 0 0 0 0 -1h-1a.5 .5 0 0 0 0 1" />
-                      </svg>
+                    <svg class="w-[44px] h-[44px] text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 24 24">
+				  <path fill-rule="evenodd" d="M12.51 8.796v1.697a3.738 3.738 0 0 1 3.288-1.684c3.455 0 4.202 2.16 4.202 4.97V19.5h-3.2v-5.072c0-1.21-.244-2.766-2.128-2.766-1.827 0-2.139 1.317-2.139 2.676V19.5h-3.19V8.796h3.168ZM7.2 6.106a1.61 1.61 0 0 1-.988 1.483 1.595 1.595 0 0 1-1.743-.348A1.607 1.607 0 0 1 5.6 4.5a1.601 1.601 0 0 1 1.6 1.606Z" clip-rule="evenodd"/>
+				  <path d="M7.2 8.809H4V19.5h3.2V8.809Z"/>
+				</svg>
+
+
                 </p>
-                <a class="footer_texto_red" href="https://www.whatsapp.com" target="_blank">Whatsapp</a>
+                <a class="footer_texto_red" href="https://ec.linkedin.com/in/kevin-vallejo-hern%C3%A1ndez-a90771134" target="_blank">Linkedin</a>
             </div>
         </div>
     </footer>

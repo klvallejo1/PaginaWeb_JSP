@@ -1,24 +1,25 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+<!DOCTYPE html>
 <html>
 <head>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" href="css/normalize.css">
-<link rel="stylesheet" href="css/registrar_Usuario.css">
-<title>Registrate!</title>
+<meta charset="ISO-8859-1">
+<title>Administrador</title>
+		<link href="css/normalize.css" rel="stylesheet">
+	    <link href="css/style_administrador.css" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
+<header class="header">
         <a href="index.jsp">
             <img class="header_logo" src="resourses/Logo_Temporal.png" alt="LogoWeb">
         </a>
-    </header>
+	</header>
+
 
     <nav class="navegacion">
         <a class="navegacion_enlace" href="index.jsp">TIENDA</a>
         <a class="navegacion_enlace" href="nosotros.jsp">NOSOTROS</a>
-        <a class="navegacion_enlace" href="formulario_contacto.jsp">CONTACT√ÅNOS</a>
+        <a class="navegacion_enlace" href="formulario_contacto.jsp">CONTACT¡NOS</a>
         <a class="navegacion_enlace navegacion_enlace--activo" href="login.jsp">TU CUENTA</a>
         <a class="navegacion_enlace" href="carrito.jsp">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="48" height="48" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F5C36C" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -29,42 +30,38 @@
 			  <path d="M6 5l14 1l-1 7h-13" />
 			</svg>
         </a>
+        <a class="navegacion_enlace" href="index.jsp">CERRAR SESI”N</a>
     </nav>
-
+    
+    <h2>BIENVENIDO, ADMINISTRADOR!</h2>
+    
     <section class="contenedor">
         <div class="formulario">
             <div class="texto_formulario">
-                <h1>Registro de nuevos clientes</h1>
+                <h2>Registro de nuevos vendedores y administradores</h2>
                 <p>Por favor, complete el formulario para registrarse.</p>
             </div>
-            <form action="ingresarUsuario.jsp" method="POST">
+            <form action="Ingresar_como_Administrador.jsp" method="POST">
                 <div>
-                    <label for="nombre" class="formulario_input">Nombre:</label>
-                    <input type="text" id="nombreU" name="nombreU" required>
-                </div>
-                <div>
-                    <label for="cedula" class="formulario_input">C√©dula:</label>
-                    <input type="text" id="cedulaU" name="cedulaU" required>
-                </div>
-                <div>
-                    <label for="estadoCivil" class="formulario_input">Estado civil:</label>
-                    <select id="estadoCivilU" name="estadoCivilU" class="input_select" required>
-                        <option value="">Seleccionar</option>
-                        <option value="Soltero">Soltero</option>
-                        <option value="Divorciado">Divorciado</option>
-                        <option value="Casado">Casado</option>
-                        <option value="Union Libre">Uni√≥n Libre</option>
-                        <option value="Viudo">Viudo</option>
-                        <option value="Indefinido">Indefinido</option>
-                    </select>
+                    <label for="nombre" class="formulario_input">Nombres y Apellidos:</label>
+                    <input type="text" id="nombresU" name="nombresU" placeholder="Ingresa tus dos nombres y dos apellidos" required>
                 </div>
                 <div>
                     <label for="correo" class="formulario_input">Correo:</label>
-                    <input type="email" id="correoU" name="correoU" required>
+                    <input type="email" id="correoU" name="correoU" placeholder="Ingresa tu correo electronico" required>
                 </div>
                 <div>
+                    <label for="perfilU" class="formulario_input">Perfil:</label>
+                    <select id="perfilU" name="perfilU" class="input_select" required>
+                        <option value="">Seleccionar</option>
+                        <option value="Administrador">Administrador</option>
+                        <option value="Vendedor">Vendedor</option>
+                    </select>
+                </div>
+                
+                <div>
                     <label for="clave" class="formulario_input">Clave:</label>
-                    <input type="password" id="claveU" name="claveU" required>
+                    <input type="password" id="claveU" name="claveU" placeholder="La clave por defecto ser· 654321" readonly="readonly">
                 </div>
                 <div>
                     <button type="submit" class="input_boton">Enviar</button>
@@ -72,9 +69,35 @@
             </form>
         </div>
     </section>
+    
+	<section class="contenedor">
+	    <div class="formulario">
+	        <div class="texto_formulario">
+	            <h2>Cambiar ContraseÒa</h2>
+	            <p>Complete todos siguientes campos para cambiar su contraseÒa.</p>
+	        </div>
+	        <form action="Cambiar_Clave.jsp" method="POST">
+	            <div>
+	                <label for="claveAnterior" class="formulario_input">Clave Anterior:</label>
+	                <input type="password" id="claveAnterior" name="claveAnterior" placeholder="Ingrese su clave anterior" required>
+	            </div>
+	            <div>
+	                <label for="nuevaClave" class="formulario_input">Nueva ContraseÒa:</label>
+	                <input type="password" id="nuevaClave" name="nuevaClave" placeholder="Ingrese su nueva contraseÒa" required>
+	            </div>
+	            <div>
+	                <label for="confirmarClave" class="formulario_input">Confirmar Nueva ContraseÒa:</label>
+	                <input type="password" id="confirmarClave" name="confirmarClave" placeholder="Repita su nueva contraseÒa" required>
+	            </div>
+	            <div>
+	                <button type="submit" class="input_boton">Guardar Nueva Clave</button>
+	            </div>
+	        </form>
+	    </div>
+	</section>
 
 
-    <footer class="footer">
+     <footer class="footer">
         <p class="footer_texto">NekoMangaStore - Todos los derechos reservados 2024.</p>
 
         <div class="footer_red">
@@ -111,7 +134,7 @@
                 <a class="footer_texto_red" href="https://www.whatsapp.com" target="_blank">Whatsapp</a>
             </div>
         </div>
-    </footer> 
+    </footer>
 
 </body>
 </html>

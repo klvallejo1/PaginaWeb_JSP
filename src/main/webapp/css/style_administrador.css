@@ -22,13 +22,15 @@ html {
     box-sizing: border-box;
     font-size: 62.5%;
   }
-  *, *:before, *:after {
-    box-sizing: inherit;
-  }
+
+*, *:before, *:after {
+box-sizing: inherit;
+}
 
 /**Globales**/
 body{
     background-color: var(--blanco);
+    font-family: var(--fuente_Principal);
     font-size: 1.6rem;
     line-height: 1.5;
 }
@@ -42,6 +44,7 @@ p{
     font-weight: 400;
     font-size: 1.8rem;
     color: var(--negro);
+    text-align: center;
 }
 
 a{
@@ -67,9 +70,78 @@ h3{
     font-size: 2.4rem;
 }
 
-.container{
-    max-width: 140rem;
+/**Contenedor**/
+.contenedor{
     margin: 0 auto;
+    padding-top: 2rem;
+    max-width: 120rem;
+    width: 95%;
+}
+
+/** Estilos adicionales **/
+.formulario {
+    background-color: var(--blanco);
+    border: 2px solid var(--primario_Oscuro);
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 2rem;
+    width: 100%;
+}
+
+.texto_formulario {
+    margin-bottom: 2rem;
+}
+
+.formulario div {
+    margin-bottom: 1.5rem;
+    width: 100%;
+}
+
+.boton_comprar{
+	padding-top: 3rem;
+}
+
+.formulario_input {
+    font-size: 1.6rem;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+select {
+    font-size: 1.6rem;
+    padding: 1rem;
+    border: 1px solid var(--primario_Oscuro);
+    border-radius: 0.5rem;
+    width: 100%;
+    transition: border-color 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border-color: var(--primario);
+    outline: none;
+}
+
+.input_boton {
+    background-color: var(--primario);
+    color: var(--blanco);
+    border: none;
+    padding: 3rem 2rem;
+    font-size: 1.6rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.input_boton:hover {
+    background-color: var(--primario_Oscuro);
 }
 
 /**Header**/
@@ -92,11 +164,11 @@ h3{
     gap: 2rem;
 }
 
-
 .navegacion_enlace{
     font-family: var(--fuente_Principal);
     color: var(--secundario);
     font-size: 3rem;
+
 }
 
 .navegacion_enlace--activo,
@@ -104,15 +176,8 @@ h3{
     color: var(--secundario_Oscuro);
 }
 
-.image-column {
-    display: flex;
-    flex-direction: column;
-}
+/**Formulario**/
 
-.image-column img {
-    width: 100%;
-    margin-bottom: 10px; /* Espacio entre las imágenes */
-}
 
 /**Footer**/
 .footer{
@@ -145,3 +210,4 @@ h3{
     margin: 0 1rem;
     text-align: center;
 }
+

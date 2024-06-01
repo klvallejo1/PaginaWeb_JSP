@@ -1,26 +1,28 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
 <html>
 <head>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8" import="com.productos.negocio.*" session="true"%>
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tu Cuenta</title>
-<link rel="stylesheet" href="css/normalize.css">
-<link rel="stylesheet" href="css/style_login.css">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link href="css/normalize.css" rel="stylesheet">
+<link href="css/style_carrito.css" rel="stylesheet">
+<title>Compra!</title>
 </head>
 <body>
 	<header class="header"> <a href="index.jsp"> <img
-		class="header_logo" src="resourses/Logo.jpg" alt="LogoWeb">
+		class="header_logo" src="resourses/Logo_Temporal.png" alt="LogoWeb">
 	</a> </header>
 
 	<nav class="navegacion"> <a class="navegacion_enlace"
 		href="index.jsp">TIENDA</a> <a class="navegacion_enlace"
 		href="nosotros.jsp">NOSOTROS</a> <a class="navegacion_enlace"
 		href="formulario_contacto.jsp">CONTACTÁNOS</a> <a
-		class="navegacion_enlace navegacion_enlace--activo" href="login.jsp">TU
-		CUENTA</a> <a class="navegacion_enlace" href="carrito.jsp"> <svg
-			xmlns="http://www.w3.org/2000/svg"
+		class="navegacion_enlace" href="login.jsp">TU CUENTA</a> <a
+		class="navegacion_enlace navegacion_enlace--activo" href="carrito.jsp">
+		<svg xmlns="http://www.w3.org/2000/svg"
 			class="icon icon-tabler icon-tabler-shopping-cart" width="48"
 			height="48" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F5C36C"
 			fill="none" stroke-linecap="round" stroke-linejoin="round"> <path
@@ -30,55 +32,70 @@
 			d="M17 17h-11v-14h-2" /> <path d="M6 5l14 1l-1 7h-13" /> </svg>
 	</a> </nav>
 
-	<section>
-	<div class="contenedor_formulario contenedor">
-		<div class="imagen_formulario"></div>
-
-		<form class="formulario" method="post" action="loginEnter.jsp">
-			<div class="texto_formulario">
-				<h1>INICIAR SESIÓN</h1>
-				<p>Ingresa tus credenciales</p>
-			</div>
-
-			<div class="formulario_input">
-				<label for="usuario">Usuario</label> <input type="text" id="usuario"
-					name="usuario"
-					placeholder="Ingrese su usuario o correo electronico" required>
-			</div>
-
-			<div class="formulario_input">
-				<label for="contraseña">Contraseña</label> <input type="password"
-					id="contraseña" name="contraseña" laceholder="Ingrese su clave"
-					required>
-			</div>
-
-			<div class="formulario_forget">
-				<a href="#">Olvidaste tu contraseña?</a>
-			</div>
-
-			<div>
-				<input class="input input_boton" type="submit" value="Ingresar">
-			</div>
-
-			<div class="formulario_register">
-				<a href="Registrar_Usuario.jsp">No tienes una cuenta?
-					Registrate!</a>
-			</div>
+	<main class="container">
+		<h2>ESCOGE TUS PRODUCTOS!</h2>
+		<form name="listadoProductos" action="carrito.jsp" method="post">
 			<%
-			String error = request.getParameter("error");
-			if (error != null && !error.isEmpty()) {
+			Producto producto = new Producto();
+			String tabla = producto.consultarProductos();
+			out.print(tabla);
 			%>
-			<div class="mensaje_error">
-				<%=error%>
-			</div>
-			<%
-			}
-			%>
+			<p>
+				<input type="submit" name="button" id="button" value="Agregar al carrito" />
+			</p>
+			<p>
+				<input type="submit" name="accion" value="Eliminar Todo" onclick="return confirm('¿Está seguro que desea eliminar todos los productos del carrito?');"/>
+			</p>
+		
+			
+			<h2>MI CARRITO</h2>
+			<img src="resourses/Carrito.png" width="160" height="240" alt="Carrito_OnePiece" />
+			
+			<ul>
+			    <%
+			    List<String> listaElementos = (List<String>) session.getAttribute("carrito");
+			
+			    if (listaElementos == null) {
+			        listaElementos = new ArrayList<String>();
+			        session.setAttribute("carrito", listaElementos);
+			    }
+			
+			    // Agregar productos seleccionados al carrito
+			    String[] elementos = request.getParameterValues("productos");
+			    if (elementos != null) {
+			        for (String elemento : elementos) {
+			            listaElementos.add(elemento);
+			        }
+			    }
+			
+			    // Manejar eliminación de un producto específico
+			    String productoAEliminar = request.getParameter("eliminar");
+			    if (productoAEliminar != null && !productoAEliminar.isEmpty()) {
+			        listaElementos.remove(productoAEliminar);
+			    }
+			
+			    // Manejar eliminación de todos los productos
+			    String accion = request.getParameter("accion");
+			    if ("Eliminar Todo".equals(accion)) {
+			        listaElementos.clear();
+			    }
+			
+			    session.setAttribute("carrito", listaElementos);
+			
+			    for (String tmp : listaElementos) 
+			    { 
+			     out.println("<li>" + tmp + "</li>"); 
+			    } 
+			    %>
+			</ul>
+			
+			<p>
+				<input type="submit" name="enviarForm" id="enviarForm" value="PAGAR"/>
+			</p>
 		</form>
-	</div>
-	</section>
-
-
+		
+				
+	</main>
 
 	<footer class="footer">
 	<p class="footer_texto">NekoMangaStore - Todos los derechos

@@ -238,20 +238,138 @@ public class Producto {
 		return resultado;
 	}
 
-	public boolean EliminarProducto(int cod) {
-		boolean f = false;
-		Conexion con = new Conexion();
-		String sql = "DELETE FROM tb_producto WHERE id_pr='" + cod + "'";
+	public String eliminarProducto(int id) {
+	    String result = "";
+	    Conexion con = new Conexion();
+	    PreparedStatement pr = null;
+	    String sql = "DELETE FROM tb_producto WHERE id_pr=?";
+	    try {
+	        pr = con.getConexion().prepareStatement(sql);
+	        pr.setInt(1, id);
 
-		try {
-			con.Ejecutar(sql);
-			f = true;
-
-		} catch (Exception e) {
-			f = false;
-		}
-
-		return f;
+	        if (pr.executeUpdate() == 1) {
+	            result = "Eliminación correcta";
+	        } else {
+	            result = "Error en la eliminación";
+	        }
+	    } catch (Exception ex) {
+	        result = ex.getMessage();
+	    } finally {
+	        try {
+	            pr.close();
+	            con.getConexion().close();
+	        } catch (Exception ex) {
+	            System.out.print(ex.getMessage());
+	        }
+	    }
+	    return result;
 	}
+
+
+	//Devuelve la lista de productos con un checkBox
+	public String consultarProductos() { 
+	    String sql = "SELECT * FROM tb_producto GROUP BY id_pr"; 
+	    Conexion con = new Conexion(); 
+	    String tabla = "<table border=2 class='table table-striped'><th>Producto</th><th>Añadir al carrito</th>"; 
+	    ResultSet rs = null; 
+	    try { 
+	        rs = con.Consulta(sql); 
+	        boolean datosEncontrados = false;
+	        while (rs.next()) { 
+	            datosEncontrados = true;
+	            tabla += "<tr><td>" + rs.getString(3) + "</td>" + "<td><input type='checkbox' name='productos' value='" + rs.getInt(1) + "'></td></tr>"; 
+	        } 
+	        tabla += "</table>";
+	        if (!datosEncontrados) {
+	            tabla = "La base de datos está vacía.";
+	        }
+	    } catch (SQLException e) { 
+	        e.printStackTrace(); 
+	        tabla = "Error al consultar la base de datos: " + e.getMessage();
+	    } finally { 
+	        if (rs != null) { 
+	            try { 
+	                rs.close(); 
+	            } catch (SQLException e) { 
+	                e.printStackTrace(); 
+	            } 
+	        } 
+	        con.cerrarConexion(); 
+	    } 
+	    return tabla; 
+	}
+	
+	public Producto obtenerProductoPorId(int idProducto) {
+	    Conexion con = new Conexion();
+	    PreparedStatement ps = null;
+	    ResultSet rs = null;
+	    Producto producto = null;
+	    
+	    try {
+	        String sql = "SELECT id_pr, id_cat, nombre_pr, cantidad_pr, precio_pr FROM tb_producto WHERE id_pr = ?";
+	        ps = con.getConexion().prepareStatement(sql);
+	        ps.setInt(1, idProducto);
+	        rs = ps.executeQuery();
+	        
+	        if (rs.next()) {
+	            int id = rs.getInt("id_pr");
+	            int id_cat = rs.getInt("id_cat");
+	            String nombre = rs.getString("nombre_pr");
+	            int cantidad = rs.getInt("cantidad_pr");
+	            double precio = rs.getDouble("precio_pr");
+	            
+	            producto = new Producto(id, id_cat, nombre, cantidad, precio);
+	        }
+	    } catch (SQLException e) {
+	        e.printStackTrace();
+	    } finally {
+	        // Cierre de recursos
+	        try {
+	            if (rs != null) {
+	                rs.close();
+	            }
+	            if (ps != null) {
+	                ps.close();
+	            }
+	            con.cerrarConexion();
+	        } catch (SQLException e) {
+	            e.printStackTrace();
+	        }
+	    }
+	    
+	    return producto;
+	}
+	
+	public String modificarProducto(int id, int id_cat, String nombre, int cantidad, double precio) {
+	    String result = "";
+	    Conexion con = new Conexion();
+	    PreparedStatement pr = null;
+	    String sql = "UPDATE tb_producto SET id_cat=?, nombre_pr=?, cantidad_pr=?, precio_pr=? WHERE id_pr=?";
+	    try {
+	        pr = con.getConexion().prepareStatement(sql);
+	        pr.setInt(1, id_cat);
+	        pr.setString(2, nombre);
+	        pr.setInt(3, cantidad);
+	        pr.setDouble(4, precio);
+	        pr.setInt(5, id);
+
+	        if (pr.executeUpdate() == 1) {
+	            result = "Modificación correcta";
+	        } else {
+	            result = "Error en la modificación";
+	        }
+	    } catch (Exception ex) {
+	        result = ex.getMessage();
+	    } finally {
+	        try {
+	            pr.close();
+	            con.getConexion().close();
+	        } catch (Exception ex) {
+	            System.out.print(ex.getMessage());
+	        }
+	    }
+	    return result;
+	}
+
 
 }

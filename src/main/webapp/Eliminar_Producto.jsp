@@ -1,50 +1,12 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<% 
-	//int cod=Integer.parseInt(request.getParameter("cod"));
-	Producto p= new Producto();
-	//boolean f= p.EliminarProducto(cod);
-	boolean f=true;
-	
-	/*
-	if(f==true){
-		response.sendRedirect("Categoria.jsp");
-		
-	}*/
-%>
-<html>
-<head>
+<%@page import="com.productos.negocio.Producto"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.productos.negocio.*"%>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Eliminar Productos</title>
-</head>
-<body>
-	<h1>Eliminar Producto</h1>
-	<form action="#" method="POST">
+    pageEncoding="UTF-8"%>
+ <%
+        int idProducto = Integer.parseInt(request.getParameter("idProducto"));
 
-	    <label for="codigo">Código de Producto:</label>
-	    <input type="text" id="codigo" name="codigo" required><br><br>
-	
-	    <label for="categoria">Categoría:</label>
-	    <select id="categoria" name="categoria" required>
-	        <option value="">Selecciona una categoría</option>
-	        <option value="Shonen">Shonen</option>
-	        <option value="Seinen">Seinen</option>
-	        <option value="Romance">Romance</option>
-	        <option value="Deportes">Deportes</option>
-	    </select><br><br>
-	
-	    <label for="descripcion">Descripción:</label><br>
-	    <textarea id="descripcion" name="descripcion" rows="4" cols="50" required></textarea><br><br>
-	
-	    <label for="precio">Precio:</label>
-	    <input type="number" id="precio" name="precio" step="0.01" min="0" required><br><br>
-	
-	    <label for="cantidad">Cantidad:</label>
-	    <input type="number" id="cantidad" name="cantidad" min="0" required><br><br>
-	
-	    <input type="submit" value="Actualizar">
-	</form>
+        Producto producto = new Producto();
+        String mensaje = producto.eliminarProducto(idProducto);
+    %>
 
-</body>
-</html>
+    <h2>Resultado de la eliminación del producto</h2>
+    <p><%= mensaje %></p>

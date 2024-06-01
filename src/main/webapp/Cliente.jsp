@@ -1,24 +1,38 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<html lang="es">
+<%@page import="java.util.ArrayList"%>
+<%@page import="java.util.List"%>
+<%@page import="com.productos.negocio.Producto"%>
+<%@page import="com.productos.negocio.Categoria"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+    pageEncoding="ISO-8859-1"%>
+    <%
+	Categoria c= new Categoria();
+	Producto producto = new Producto();
+	String resultado="";
+	
+	String tabla = producto.consultarTodo();
+	
+%>
+<!DOCTYPE html>
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contactanos</title>
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/style_formulario.css">
+<meta charset="ISO-8859-1">
+<title>Cliente</title>
+		<link href="css/normalize.css" rel="stylesheet">
+	    <link href="css/style_administrador.css" rel="stylesheet">
 </head>
 <body>
-    <header class="header">
+<header class="header">
         <a href="index.jsp">
-            <img class="header_logo" src="resourses/Logo.jpg" alt="LogoWeb">
+            <img class="header_logo" src="resourses/Logo_Temporal.png" alt="LogoWeb">
         </a>
-    </header>
+	</header>
+
 
     <nav class="navegacion">
         <a class="navegacion_enlace" href="index.jsp">TIENDA</a>
         <a class="navegacion_enlace" href="nosotros.jsp">NOSOTROS</a>
-        <a class="navegacion_enlace navegacion_enlace--activo" href="formulario_contacto.jsp">CONTACTÁNOS</a>
-        <a class="navegacion_enlace" href="login.jsp">TU CUENTA</a>
+        <a class="navegacion_enlace" href="formulario_contacto.jsp">CONTACTÁNOS</a>
+        <a class="navegacion_enlace navegacion_enlace--activo" href="login.jsp">TU CUENTA</a>
         <a class="navegacion_enlace" href="carrito.jsp">
             <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart" width="48" height="48" viewBox="0 0 24 24" stroke-width="1.5" stroke="#F5C36C" fill="none" stroke-linecap="round" stroke-linejoin="round">
 			  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
@@ -28,57 +42,51 @@
 			  <path d="M6 5l14 1l-1 7h-13" />
 			</svg>
         </a>
+        <a class="navegacion_enlace" href="index.jsp">CERRAR SESIÓN</a>
     </nav>
+    
+    <h2>BIENVENIDO, CLIENTE!</h2>
+    
+     <main class="container">
 
-    <h1>¿NO ENCUENTRAS TU MANGA FAVORITO? CONTÁCTANOS!</h1>
-
-    <div class="imagen_fondo"></div>
-
-    <main>
-        <form class="formulario">
-            <div class="campo">
-                <label for="nombres" class="campo_label">NOMBRES*: </label>
-                <input class="items" type="text" name="Nombres" id="nombres" placeholder="Ingrese sus nombres" required>
-            </div>
-            
-            <div class="campo">
-                <label for="apellidos" class="campo_label">APELLIDOS*: </label>
-                <input class="items" type="text" name="Apellidos" id="apellidos" placeholder="Ingrese sus apellidos" required>
-            </div>
-
-            <div class="campo">
-                <label for="correo" class="campo_label">CORREO*: </label>
-                <input class="items" type="email" name="Correo" id="correo" placeholder="Ingrese su correo electronico" required>
-            </div>
-
-            <div class="campo">
-                <label for="estado_civil" class="campo_label">ESTADO CIVIL:</label>
-                <select id="opciones" name="opciones" class="items">
-                    <option value="opcion1">Soltero/a</option>
-                    <option value="opcion2">Casado/a</option>
-                    <option value="opcion3">Divorciado/a</option>
-                  </select>                  
-            </div>
-
-            <div class="campo">
-                <label for="mensaje" class="campo_label">MANGA A SOLICITAR*: </label>
-                <textarea id="mensaje" class="items campo_label_txtArea" placeholder="¿Que manga buscabas? Ingresa su nombre, volumen, editorial, etc..." required></textarea>
-            </div>
-
-            <div class="campo">
-                <label for="foto" class="campo_label">AGREGA UNA FOTO</label>
-                <input type="file" id="foto" name="foto" accept="image/*">
-            </div>
-
-            <div>
-                <input class="boton" type="submit" name="Enviar" id="enviar">
-                <input class="boton boton_reset" type="reset" name="Borrar Todo" id="delete">
-            </div>
-        </form>
-
+        <h1>MANGAS DISPONIBLES</h1>
+        <h2>Lista de Productos</h2>
+        <%=tabla%>
     </main>
+    
+    <section>
+    	<a href="carrito.jsp" class="input_boton">COMPRA AQUÍ!</a>
+    </section>
+    
+ 
+	<section class="contenedor">
+	    <div class="formulario">
+	        <div class="texto_formulario">
+	            <h2>Cambiar Contraseña</h2>
+	            <p>Complete todos siguientes campos para cambiar su contraseña.</p>
+	        </div>
+	        <form action="Cambiar_Clave.jsp" method="POST">
+	            <div>
+	                <label for="claveAnterior" class="formulario_input">Clave Anterior:</label>
+	                <input type="password" id="claveAnterior" name="claveAnterior" placeholder="Ingrese su clave anterior" required>
+	            </div>
+	            <div>
+	                <label for="nuevaClave" class="formulario_input">Nueva Contraseña:</label>
+	                <input type="password" id="nuevaClave" name="nuevaClave" placeholder="Ingrese su nueva contraseña" required>
+	            </div>
+	            <div>
+	                <label for="confirmarClave" class="formulario_input">Confirmar Nueva Contraseña:</label>
+	                <input type="password" id="confirmarClave" name="confirmarClave" placeholder="Repita su nueva contraseña" required>
+	            </div>
+	            <div>
+	                <button type="submit" class="input_boton">Guardar Nueva Clave</button>
+	            </div>
+	        </form>
+	    </div>
+	</section>
 
-    <footer class="footer">
+
+     <footer class="footer">
         <p class="footer_texto">NekoMangaStore - Todos los derechos reservados 2024.</p>
 
         <div class="footer_red">
@@ -116,6 +124,6 @@
             </div>
         </div>
     </footer>
-    
+
 </body>
 </html>
